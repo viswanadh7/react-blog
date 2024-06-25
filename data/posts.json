@@ -1,0 +1,26 @@
+[
+    {
+        "id": "2b94",
+        "userID": "9ad1",
+        "topic": "Entertainment",
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8A0H8s4T13MCCjseCjefNJxk8Rz6JqRYb1IfI_MPGXg&s",
+        "heading": "Kalki - Breaking everything",
+        "description": "Kalki 2898 AD Set in a dystopian future, Kalki 2898 AD tells the story of a bounty hunter called Bhairava (Prabhas), a pregnant woman called SUM-80 (Deepika) on the run, Ashwatthama (Amitabh) waiting to aid Kalki at the end of the Kali Yug and Supreme Yaskin (Kamal), who has plans of his own."
+    },
+    {
+        "id": "e295",
+        "userID": "a89d",
+        "topic": "Automobiles",
+        "image_url": "https://images.pexels.com/photos/18321507/pexels-photo-18321507/free-photo-of-vintage-ford-mustang.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "heading": "Ford Mustang 1967 model sold for 2.8cr",
+        "description": "The iconic 1967 Ford Mustang, a timeless symbol of American muscle, recently fetched an impressive 2.8 crore in a collector's auction. Renowned for its powerful V8 engine and sleek design, this vintage masterpiece continues to captivate enthusiasts worldwide. Its enduring popularity highlights its status as a coveted classic car, blending performance and style effortlessly."
+    },
+    {
+        "id": "3834",
+        "userID": "cb24",
+        "topic": "Tech",
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKEoY3IHuCs_R2Xb6ARNDjD5hoajR7oG6CgQ&s",
+        "heading": "Samsung - Exynos",
+        "description": "The Samsung Exynos processor is a cutting-edge mobile chipset renowned for its powerful performance and energy efficiency. Built with advanced manufacturing processes, it integrates multiple cores to handle intensive tasks seamlessly. Known for supporting high-resolution displays and robust gaming capabilities, it offers a balanced blend of speed and responsiveness for modern smartphones and tablets."
+    }
+]
