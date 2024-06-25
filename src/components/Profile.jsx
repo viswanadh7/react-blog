@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import PostCard from './PostCard'
 import { useAuth } from '../utils/auth'
+
+import PulseLoader from "react-spinners/PulseLoader";
 
 
 // const POST_URL = 'http://localhost:8080/posts'
@@ -14,9 +16,8 @@ function addPost(postData) {
 }
 function Profile() {
     const auth = useAuth()
-    const navigate = useNavigate()
-    if (auth.user == undefined) {
-        navigate('/login')
+    if (auth.user === undefined) {
+        return (<Navigate to='/login' />)
     }
 
     //------------Responsive booleans------------//
@@ -25,10 +26,17 @@ function Profile() {
     const [profileSideBar, setProfileSideBar] = useState(false)
     const [trendingSideBar, setTrendingSideBar] = useState(false)
     //------------Responsive booleans------------//
-
-    // const params = useParams()
+    //----------------Date----------------//
+    const currentDate = new Date()
+    const date = currentDate.getDate()
+    const month = currentDate.getMonth()
+    const year = currentDate.getFullYear()
+    const fullDateString = `${date}-${month}-${year}`
+    console.log(`${date}-${month}-${year}`)
+    //----------------Date----------------//
+    const params = useParams()
     // const URL = `https://blog-server-ke1e.onrender.com/users/${params.id}`
-    const [postData, setPostData] = useState({ userID: auth?.user.id, topic: 'Automobiles', image_url: '', heading: '', description: '' })
+    const [postData, setPostData] = useState({ userID: params.id, date: fullDateString, topic: 'Automobiles', image_url: '', heading: '', description: '' })
 
     // const { data: userData } = useQuery({ queryKey: ['userData'], queryFn: () => { return axios.get(URL) } })
 
@@ -48,6 +56,7 @@ function Profile() {
         e.preventDefault()
         addMutate()
     }
+    // console.log(auth.user === undefined)
     return (
         <div className='lg:grid grid-cols-5 gap-5 px-5'>
             <div className={`col-span-1 border border-black p-3 h-fit sticky top-20 bg-white z-50 ${profileSideBar ? '' : 'hidden'} lg:block mt-8 lg:mt-0`}>
@@ -76,9 +85,11 @@ function Profile() {
                     }
                 })}
             </div>
-            <div className={createPostBoolean ? 'col-span-3 flex flex-col gap-5 p-5 border border-black mt-6' : 'hidden'}>
-
-                <h1 className={isPending ? 'mx-auto text-xl' : 'hidden'}>Please wait...</h1>
+            <div className={createPostBoolean ? 'col-span-3 bg-white flex flex-col gap-5 p-5 border border-black mt-6' : 'hidden'}>
+                <div className={isPending ? 'mx-auto' : 'hidden'}>
+                    <PulseLoader color={'#ff0000'} size={20} aria-label="Loading Spinner" data-testid="loader" />
+                    <h1>Please wait...</h1>
+                </div>
                 <h1 className='mx-auto text-xl'>Post a new blog</h1>
                 <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-5' action="">
                     <select onChange={(e) => setPostData({ ...postData, topic: e.target.value })} value={postData.topic} className='py-2 px-3 rounded-lg bg-white border border-black' name="" id="">
