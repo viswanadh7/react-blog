@@ -12,7 +12,6 @@ function getAllPosts() {
 function Home() {
     const [topic, setTopic] = useState(null)
     const { data } = useQuery({ queryKey: ['allPosts'], queryFn: () => getAllPosts() })
-    // console.log('Data with github ------ \n', data?.data)
     return (
         <div className='lg:grid grid-cols-5 gap-5 px-5'>
             <div className='lg:flex flex-col gap-10 hidden col-span-1 text-lg px-5 py-5 border border-black h-fit sticky top-20 bg-white'>
@@ -38,7 +37,8 @@ function Home() {
                 </select>
                 <h1 className='text-2xl mt-10 hidden md:block'>{topic === null ? 'All posts' : topic}</h1>
 
-                {data?.data.map((post) => {
+                {data?.data.reverse().map((post) => {
+                    console.log(post.heading)
                     if (topic !== null) {
                         // console.log(topic)
                         if (topic === post.topic) {
@@ -68,7 +68,7 @@ function Home() {
                     </div>
                 </div> */}
             </div>
-            <div className='lg:flex flex-col gap-10 hidden col-span-1 text-lg px-5 py-5 h-fit sticky top-20 bg-white shadow-lg'>
+            <div className='lg:flex flex-col gap-10 hidden col-span-1 text-lg px-5 py-5 h-fit sticky top-20 border border-black bg-white'>
                 <h1 className='text-xl font-semibold'>Trending Now</h1>
                 <h1 className='flex justify-between'>Kalki 2898AD<i className="fa-solid fa-arrow-trend-up"></i></h1>
                 <h1 className='flex justify-between'>Virat Kohli<i className="fa-solid fa-arrow-trend-up"></i></h1>
