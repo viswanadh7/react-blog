@@ -6,6 +6,7 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import { AuthProvider } from './utils/auth'
+import PageNotFound from './components/PageNotFound'
 
 function App() {
   const queryClient = new QueryClient()
@@ -22,7 +23,7 @@ function App() {
             <Route path='/login' element={<Login />} />
 
             <Route path='/profile/:id' element={<Profile />} />
-
+            <Route path='*' element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
