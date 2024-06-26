@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../utils/auth'
 
 
@@ -25,8 +25,11 @@ function Login() {
             // console.log(user.email)
             if (user.email == loginData.email) {
                 if (user.password == loginData.password) {
-                    auth.login(user)
-                    navigate(`/profile/${user.id}`, { replace: true })
+                    const sessionUser = { id: user.id, firstname: user.firstname, profile_url: user.profile_url }
+                    auth.login(sessionUser)
+                    // window.location.reload()
+                    navigate(`/profile/${user.id}`)
+                    // return (<Navigate to={`/profile/${user.id}`} replace={true} />)
                 }
                 else {
                     toast.error('Wrong password. Please try again')

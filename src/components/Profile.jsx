@@ -16,10 +16,9 @@ function addPost(postData) {
 }
 function Profile() {
     const auth = useAuth()
-    if (auth.user === undefined) {
+    if (auth.user == null) {
         return (<Navigate to='/login' />)
     }
-
     //------------Responsive booleans------------//
     const [createPostBoolean, setCreatePostBoolean] = useState(false)
     const [showMyPostBoolean, setShowMyPostBoolean] = useState(true)
@@ -59,17 +58,19 @@ function Profile() {
     // console.log(auth.user === undefined)
     return (
         <div className='lg:grid grid-cols-5 gap-5 px-5'>
-            <div className={`col-span-1 border border-black p-3 h-fit sticky top-20 bg-white z-50 ${profileSideBar ? '' : 'hidden'} lg:block mt-8 lg:mt-0`}>
+            <div className={`col-span-1 items-center border border-black p-3 h-fit sticky top-20 bg-white ${profileSideBar ? 'md:flex' : 'hidden'} lg:block mt-8 lg:mt-0`}>
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg" alt="" />
-                <h1 className='text-2xl'>{auth?.user.firstname}</h1>
-                <p>No.of post - 8</p>
+                <div>
+                    <h1 className='text-2xl'>{auth?.user.firstname}</h1>
+                    <p>No.of post - 8</p>
 
-                <button onClick={() => { setCreatePostBoolean(true); setShowMyPostBoolean(false); setProfileSideBar(false) }} className='px-3 py-2 md:py-1 border border-black w-full my-2'>Create new post</button>
+                    <button onClick={() => { setCreatePostBoolean(true); setShowMyPostBoolean(false); setProfileSideBar(false) }} className='px-3 py-2 md:py-1 border border-black w-full my-2'>Create new post</button>
 
-                <button onClick={() => { setCreatePostBoolean(false); setShowMyPostBoolean(true); setProfileSideBar(false) }} className='px-3 py-2 md:py-1 border border-black w-full my-2'>Show my posts</button>
+                    <button onClick={() => { setCreatePostBoolean(false); setShowMyPostBoolean(true); setProfileSideBar(false) }} className='px-3 py-2 md:py-1 border border-black w-full my-2'>Show my posts</button>
 
-                <div className='flex w-full'>
-                    <button onClick={() => { navigate('/'); auth.logout(); window.location.reload() }} className='px-3 py-2 md:py-1 border border-black mx-auto w-1/2 my-2 bg-red-500 text-white'>Logout</button>
+                    <div className='flex w-full'>
+                        <button onClick={() => { auth.logout(); window.location.reload() }} className='px-3 py-2 md:py-1 border border-black mx-auto w-1/2 my-2 bg-red-500 text-white'>Logout</button>
+                    </div>
                 </div>
             </div>
             <div className={showMyPostBoolean ? 'col-span-3 flex flex-col gap-5' : 'hidden'}>
@@ -103,7 +104,7 @@ function Profile() {
                     <textarea onChange={(e) => setPostData({ ...postData, description: e.target.value })} value={postData.description} className='border border-black px-3 py-2 rounded-lg' rows='10' name="" id="" placeholder='Description'></textarea>
                     <input className='border border-black px-5 py-1 rounded-lg w-fit mx-auto cursor-pointer' type="submit" value="Submit" />
                 </form>
-                <button onClick={() => { setProfileSideBar(true); setCreatePostBoolean(false) }} className='border border-black w-fit px-4 py-1 md:hidden'>Back</button>
+                <button onClick={() => { setProfileSideBar(true); setCreatePostBoolean(false) }} className='border border-black w-fit px-4 py-1 lg:hidden'>Back</button>
             </div>
             <div className={` flex-col gap-10 col-span-1 text-lg px-5 py-5 border border-black h-fit sticky top-20 mt-8 lg:mt-0 bg-white ${trendingSideBar ? 'flex' : 'hidden lg:flex'}`}>
                 <h1 className='text-xl font-semibold'>Trending Now</h1>
@@ -111,7 +112,7 @@ function Profile() {
                 <h1 className='flex justify-between'>Virat Kohli<i className="fa-solid fa-arrow-trend-up"></i></h1>
                 <h1 className='flex justify-between'>Pavan Kalyan<i className="fa-solid fa-arrow-trend-up"></i></h1>
                 <h1 className='flex justify-between'>India vs Austrila<i className="fa-solid fa-arrow-trend-up"></i></h1>
-                <button onClick={() => { setTrendingSideBar(false); setShowMyPostBoolean(true) }} className='md:hidden'>Back</button>
+                <button onClick={() => { setTrendingSideBar(false); setShowMyPostBoolean(true) }} className='lg:hidden'>Back</button>
             </div>
         </div>
     )

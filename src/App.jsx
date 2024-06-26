@@ -6,7 +6,6 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import { AuthProvider } from './utils/auth'
-import RequireAuth from './components/RequireAuth'
 
 function App() {
   const queryClient = new QueryClient()
@@ -22,7 +21,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
 
-            <Route path='/profile/:id' element={<RequireAuth><Profile /></RequireAuth>} />
+            <Route path='/profile/:id' element={<Profile />} />
 
           </Routes>
         </BrowserRouter>

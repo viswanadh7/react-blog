@@ -45,7 +45,7 @@ function Register() {
     }
     return (
         <div className='lg:flex justify-center px-3'>
-            <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-10 border-2 border-purple-600 rounded-lg shadow-lg p-10 mt-10 bg-white' action="">
+            <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col w-full md:w-3/5 lg:w-fit mx-auto gap-10 border-2 border-purple-600 rounded-lg shadow-lg p-10 mt-10 bg-white' action="">
                 <h1 className='mx-auto text-2xl underline'>Create Account</h1>
                 <div className='flex flex-col lg:flex-row gap-10 lg:gap-3'>
                     <input onChange={(e) => setUser({ ...user, firstname: e.target.value })} value={user.firstname} required className='border border-black px-3 py-2 rounded-md' type="text" placeholder='First Name' />
