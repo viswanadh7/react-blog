@@ -9,7 +9,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 
 // const POST_URL = 'http://localhost:8080/posts'
-const POST_URL = 'https://blog-server-ke1e.onrender.com/posts'
+const POST_URL = 'https://blog-express-owat.onrender.com/posts'
 
 function addPost(postData) {
     return axios.post(POST_URL, postData)
@@ -31,7 +31,7 @@ function Profile() {
     const month = currentDate.getMonth()
     const year = currentDate.getFullYear()
     const fullDateString = `${date}-${month}-${year}`
-    console.log(`${date}-${month}-${year}`)
+    // console.log(`${date}-${month}-${year}`)
     //----------------Date----------------//
     const params = useParams()
     // const URL = `https://blog-server-ke1e.onrender.com/users/${params.id}`
@@ -57,8 +57,8 @@ function Profile() {
     }
     // console.log(auth.user === undefined)
     return (
-        <div className='lg:grid grid-cols-5 gap-5 px-5'>
-            <div className={`col-span-1 items-center border border-black p-3 h-fit sticky top-20 bg-white ${profileSideBar ? 'md:flex' : 'hidden'} lg:block mt-8 lg:mt-0`}>
+        <div className='lg:grid grid-cols-5 gap-5 px-5 relative'>
+            <div className={`col-span-1 items-center border border-black p-3 h-fit sticky top-20 mt-8 lg:mt-0 bg-white ${profileSideBar ? 'md:flex' : 'hidden'} lg:block`}>
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg" alt="" />
                 <div>
                     <h1 className='text-2xl'>{auth?.user.firstname}</h1>
@@ -82,7 +82,7 @@ function Profile() {
                 <h1 className='mt-3 flex items-center gap-5'><span className='text-2xl'>Your Posts</span><i className="fa-solid fa-arrow-down-long text-md"></i></h1>
                 {getPostData?.data.map((post) => {
                     if (post.userID === auth?.user.id) {
-                        return (<PostCard key={post.id} post={post} />)
+                        return (<PostCard key={post._id} post={post} />)
                     }
                 })}
             </div>

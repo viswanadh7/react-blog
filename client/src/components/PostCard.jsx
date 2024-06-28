@@ -3,17 +3,19 @@ import axios from 'axios'
 import { useAuth } from '../utils/auth'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
 function PostCard({ post }) {
     const auth = useAuth()
     const [user, setUser] = useState()
     useEffect(() => {
-        axios.get(`https://blog-server-ke1e.onrender.com/users/${post.userID}`).then(response => setUser(response.data)).catch(error => console.log(error.message))
-    })
+        axios.get(`https://blog-express-owat.onrender.com/users/${post.userID}`).then(response => setUser(response.data)).catch(error => console.log(error.message))
+        // axios.get(`http://localhost:8080/users/${post.userID}`).then(response => setUser(response.data)).catch(error => console.log(error.message))
+    }, [''])
     function deletePost() {
-        axios.delete(`https://blog-server-ke1e.onrender.com/posts/${post.id}`)
+        axios.delete(`https://blog-express-owat.onrender.com/posts/${post._id}`)
+        // axios.delete(`http://localhost:8080/posts/${post._id}`)
     }
     const { mutate: deleteMutate } = useMutation({
         mutationFn: () => deletePost(),
@@ -21,17 +23,20 @@ function PostCard({ post }) {
     })
     return (
         <div id='postCard' className='h-fit border border-black shadow-lg p-5 mb-5 bg-white'>
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>{post.heading}</title>
-                <link rel="canonical" href="http://mysite.com/example" />
-            </Helmet>
+            <HelmetProvider>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{post.heading}</title>
+                    <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
+            </HelmetProvider>
+
             <div className='flex justify-between'>
                 <div className='flex items-center gap-3'>
                     <img className='h-16 w-16' src={user && user.profile_url} alt="" />
                     <div>
                         <p>{user && user.firstname}</p>
-                        <p className='text-sm font-thin'>23-6-2024</p>
+                        <p className='text-sm font-thin'>{post.date}</p>
                     </div>
                 </div>
                 <div className={auth.user !== undefined ? 'flex items-center group relative' : 'hidden'}>

@@ -9,8 +9,8 @@ import { ToastContainer, toast } from 'react-custom-alert';
 import 'react-custom-alert/dist/index.css';
 
 
-// const URL = 'http://localhost:8080/users'
-const URL = 'https://blog-server-ke1e.onrender.com/users'
+const URL = 'http://localhost:8080/users'
+// const URL = 'https://blog-express-owat.onrender.com/users'
 
 
 function Login() {
@@ -25,10 +25,10 @@ function Login() {
             // console.log(user.email)
             if (user.email == loginData.email) {
                 if (user.password == loginData.password) {
-                    const sessionUser = { id: user.id, firstname: user.firstname, profile_url: user.profile_url }
+                    const sessionUser = { id: user._id, firstname: user.firstname, profile_url: user.profile_url }
                     auth.login(sessionUser)
                     // window.location.reload()
-                    navigate(`/profile/${user.id}`)
+                    navigate(`/profile/${user._id}`)
                     // return (<Navigate to={`/profile/${user.id}`} replace={true} />)
                 }
                 else {

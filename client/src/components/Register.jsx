@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 //Fetching//
 // const URL = 'http://localhost:8080/users'
-const URL = 'https://blog-server-ke1e.onrender.com/users'
+const URL = 'https://blog-express-owat.onrender.com/users'
 
 function getUsers() {
     return axios.get(URL)

@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 import PostCard from './PostCard.jsx'
 
 // const POST_URL = 'http://localhost:8080/posts'
-const POST_URL = 'https://blog-server-ke1e.onrender.com/posts'
-
+const POST_URL = 'https://blog-express-owat.onrender.com/posts'
+//https://blog-express-owat.onrender.com
 function getAllPosts() {
     return axios.get(POST_URL)
 }
